@@ -1,27 +1,21 @@
 "use strict";
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -63,10 +57,8 @@ var __rest = (this && this.__rest) || function (s, e) {
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
         t[p] = s[p];
     if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -111,25 +103,25 @@ var PlotlyChart = /** @class */ (function (_super) {
     }
     PlotlyChart.prototype.attachListeners = function () {
         if (this.props.onAfterExport) {
-            this.container.on('plotly_afterexport', this.props.onAfterExport);
+            this.container.on("plotly_afterexport", this.props.onAfterExport);
         }
         if (this.props.onAfterPlot) {
-            this.container.on('plotly_afterplot', this.props.onAfterPlot);
+            this.container.on("plotly_afterplot", this.props.onAfterPlot);
         }
         if (this.props.onAnimated) {
-            this.container.on('plotly_animated', this.props.onAnimated);
+            this.container.on("plotly_animated", this.props.onAnimated);
         }
         if (this.props.onAnimatingFrame) {
-            this.container.on('plotly_animatingframe', this.props.onAnimatingFrame);
+            this.container.on("plotly_animatingframe", this.props.onAnimatingFrame);
         }
         if (this.props.onAnimationInterrupted) {
-            this.container.on('plotly_animationinterrupted', this.props.onAnimationInterrupted);
+            this.container.on("plotly_animationinterrupted", this.props.onAnimationInterrupted);
         }
         if (this.props.onAutoSize) {
-            this.container.on('plotly_autosize', this.props.onAutoSize);
+            this.container.on("plotly_autosize", this.props.onAutoSize);
         }
         if (this.props.onBeforeExport) {
-            this.container.on('plotly_beforeexport', this.props.onBeforeExport);
+            this.container.on("plotly_beforeexport", this.props.onBeforeExport);
         }
         // did not find onButtonClicked in @types/plotly.js?
         // if (this.props.onButtonClicked) {
@@ -137,81 +129,81 @@ var PlotlyChart = /** @class */ (function (_super) {
         // }
         if (this.props.onClick) {
             this.container.removeAllListeners("plotly_click");
-            this.container.on('plotly_click', this.props.onClick);
+            this.container.on("plotly_click", this.props.onClick);
         }
         if (this.props.onClickAnnotation) {
             this.container.removeAllListeners("plotly_clickannotation");
-            this.container.on('plotly_clickannotation', this.props.onClickAnnotation);
+            this.container.on("plotly_clickannotation", this.props.onClickAnnotation);
         }
         if (this.props.onDeselect) {
             this.container.removeAllListeners("plotly_deselect");
-            this.container.on('plotly_deselect', this.props.onDeselect);
+            this.container.on("plotly_deselect", this.props.onDeselect);
         }
         if (this.props.onDoubleClick) {
             this.container.removeAllListeners("plotly_doubleclick");
-            this.container.on('plotly_doubleclick', this.props.onDoubleClick);
+            this.container.on("plotly_doubleclick", this.props.onDoubleClick);
         }
         if (this.props.onFramework) {
             this.container.removeAllListeners("plotly_framework");
-            this.container.on('plotly_framework', this.props.onFramework);
+            this.container.on("plotly_framework", this.props.onFramework);
         }
         if (this.props.onHover) {
             this.container.removeAllListeners("plotly_hover");
-            this.container.on('plotly_hover', this.props.onHover);
+            this.container.on("plotly_hover", this.props.onHover);
         }
         if (this.props.onLegendClick) {
             this.container.removeAllListeners("plotly_legendclick");
-            this.container.on('plotly_legendclick', this.props.onLegendClick);
+            this.container.on("plotly_legendclick", this.props.onLegendClick);
         }
         if (this.props.onLegendDoubleClick) {
             this.container.removeAllListeners("plotly_legenddoubleclick");
-            this.container.on('plotly_legenddoubleclick', this.props.onLegendDoubleClick);
+            this.container.on("plotly_legenddoubleclick", this.props.onLegendDoubleClick);
         }
         if (this.props.onRelayout) {
             this.container.removeAllListeners("plotly_relayout");
-            this.container.on('plotly_relayout', this.props.onRelayout);
+            this.container.on("plotly_relayout", this.props.onRelayout);
         }
         if (this.props.onRestyle) {
             this.container.removeAllListeners("plotly_restyle");
-            this.container.on('plotly_restyle', this.props.onRestyle);
+            this.container.on("plotly_restyle", this.props.onRestyle);
         }
         if (this.props.onRedraw) {
             this.container.removeAllListeners("plotly_redraw");
-            this.container.on('plotly_redraw', this.props.onRedraw);
+            this.container.on("plotly_redraw", this.props.onRedraw);
         }
         if (this.props.onSelecting) {
             this.container.removeAllListeners("plotly_selecting");
-            this.container.on('plotly_selecting', this.props.onSelecting);
+            this.container.on("plotly_selecting", this.props.onSelecting);
         }
         if (this.props.onSliderChange) {
             this.container.removeAllListeners("plotly_sliderchange");
-            this.container.on('plotly_sliderchange', this.props.onSliderChange);
+            this.container.on("plotly_sliderchange", this.props.onSliderChange);
         }
         if (this.props.onSliderEnd) {
             this.container.removeAllListeners("plotly_sliderend");
-            this.container.on('plotly_sliderend', this.props.onSliderEnd);
+            this.container.on("plotly_sliderend", this.props.onSliderEnd);
         }
         if (this.props.onSliderStart) {
             this.container.removeAllListeners("plotly_sliderstart");
-            this.container.on('plotly_sliderstart', this.props.onSliderStart);
+            this.container.on("plotly_sliderstart", this.props.onSliderStart);
         }
         if (this.props.onTransitioning) {
             this.container.removeAllListeners("plotly_transitioning");
-            this.container.on('plotly_transitioning', this.props.onTransitioning);
+            this.container.on("plotly_transitioning", this.props.onTransitioning);
         }
         if (this.props.onTransitionInterrupted) {
             this.container.removeAllListeners("plotly_transitioninterrupted");
-            this.container.on('plotly_transitioninterrupted', this.props.onTransitionInterrupted);
+            this.container.on("plotly_transitioninterrupted", this.props.onTransitionInterrupted);
         }
         if (this.props.onUnHover) {
             this.container.removeAllListeners("plotly_unhover");
-            this.container.on('plotly_unhover', this.props.onUnHover);
+            this.container.on("plotly_unhover", this.props.onUnHover);
         }
         if (this.props.onEvent) {
             this.container.removeAllListeners("plotly_event");
-            this.container.on('plotly_event', this.props.onEvent);
+            this.container.on("plotly_event", this.props.onEvent);
         }
-        window.addEventListener('resize', this.resize);
+        window.addEventListener("resize", this.resize);
     };
     PlotlyChart.prototype.componentWillReceiveProps = function (nextProps) {
         this.draw(nextProps);
@@ -223,7 +215,7 @@ var PlotlyChart = /** @class */ (function (_super) {
         if (this.container) {
             plotly.purge(this.container);
         }
-        window.removeEventListener('resize', this.resize);
+        window.removeEventListener("resize", this.resize);
     };
     PlotlyChart.prototype.render = function () {
         var _this = this;

@@ -1,9 +1,10 @@
-import * as plotly from 'plotly.js';
-import * as React from 'react';
+import * as plotly from "plotly.js";
+import * as React from "react";
 export interface IPlotlyChartProps {
     config?: any;
     data: any;
     layout?: any;
+    style?: any;
     onAfterExport?: () => void;
     onAfterPlot?: () => void;
     onAnimated?: () => void;
