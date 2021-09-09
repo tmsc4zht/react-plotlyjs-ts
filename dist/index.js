@@ -62,7 +62,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var plotly = require("plotly.js");
+var plotly = require("plotly.js-dist-min");
 var React = require("react");
 /***
  * Usage:

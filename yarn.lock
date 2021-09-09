@@ -7,7 +7,14 @@
   resolved "https://registry.yarnpkg.com/@types/d3/-/d3-3.5.45.tgz#cceb1cd8f468b0ed1c96546ddefff3408d7463a7"
   integrity sha512-wLICfMtjDEoAJie1MF6OuksAzOapRXgJy+l5HQVpyC1yMAlvHz2QKrrasUHru8xD6cbgQNGeO+CeyjOlKtly2A==
 
-"@types/plotly.js@^1.28.8":
+"@types/plotly.js-dist-min@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@types/plotly.js-dist-min/-/plotly.js-dist-min-2.3.0.tgz#b1b86b94b86e4628d97beca95cc7dd26c2f30758"
+  integrity sha512-MPvZbG2RA3zuU+AYgsVysJvNLyf3bvi1nt3ywHARwMW2TB38VQuYhQFD1pTRzBuqiV5ieYif7mLY5bHWGUVZqw==
+  dependencies:
+    "@types/plotly.js" "*"
+
+"@types/plotly.js@*":
   version "1.54.15"
   resolved "https://registry.yarnpkg.com/@types/plotly.js/-/plotly.js-1.54.15.tgz#c8efc8d07e9c4c6fae35de06e9b399cc5e2495b6"
   integrity sha512-XU2AvJodVRUWo+Dz4rqR2BcfFDURBdbiPsTeiGb4a4Muwws8Au0pRtUs1eNhWuhX4urx3vLK3etfvSTleXf0yw==

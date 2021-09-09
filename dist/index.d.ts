@@ -1,4 +1,4 @@
-import * as plotly from "plotly.js";
+import * as plotly from "plotly.js-dist-min";
 import * as React from "react";
 export interface IPlotlyChartProps {
     config?: any;
