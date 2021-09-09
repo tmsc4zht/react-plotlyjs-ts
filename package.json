@@ -18,19 +18,16 @@
   ],
   "author": "79966690+tmsc4zht@users.noreply.github.com",
   "license": "MIT",
-  "dependencies": {
-    "lodash": "^4.17.4"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "plotly.js": "^1.31.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
-    "typescript": "^2.5.3",
-    "@types/lodash": "^4.14.80",
     "@types/plotly.js": "^1.28.8",
     "@types/react": "^16.0.18",
-    "@types/react-dom": "^16.0.2"
+    "@types/react-dom": "^16.0.2",
+    "typescript": "^2.5.3"
   }
 }
