@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`react can create component 1`] = `<div />`;
+exports[`react can create PlotlyChart component 1`] = `<div />`;
+
+exports[`react can create PlotlyChartFC component 1`] = `<div />`;

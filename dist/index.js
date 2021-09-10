@@ -25,6 +25,25 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -76,8 +95,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PlotlyChartFC = void 0;
 var plotly_js_1 = __importDefault(require("plotly.js"));
-var react_1 = __importDefault(require("react"));
+var react_1 = __importStar(require("react"));
 /***
  * Usage:
  *  <PlotlyChart data={toJS(this.model_data)}
@@ -253,4 +273,14 @@ var PlotlyChart = /** @class */ (function (_super) {
     };
     return PlotlyChart;
 }(react_1.default.Component));
+var PlotlyChartFC = function (props) {
+    var container = (0, react_1.useRef)(null);
+    (0, react_1.useEffect)(function () {
+        if (container.current != null) {
+            plotly_js_1.default.newPlot(container.current, props.data, props.layout, props.config);
+        }
+    }, [container]);
+    return (react_1.default.createElement("div", { ref: container }));
+};
+exports.PlotlyChartFC = PlotlyChartFC;
 exports.default = PlotlyChart;
