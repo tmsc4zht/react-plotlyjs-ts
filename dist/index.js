@@ -1,27 +1,36 @@
 "use strict";
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -57,13 +66,18 @@ var __rest = (this && this.__rest) || function (s, e) {
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
         t[p] = s[p];
     if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
     return t;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var plotly = require("plotly.js-dist-min");
-var React = require("react");
+var plotly_js_dist_1 = __importDefault(require("plotly.js-dist"));
+var react_1 = __importDefault(require("react"));
 /***
  * Usage:
  *  <PlotlyChart data={toJS(this.model_data)}
@@ -77,7 +91,7 @@ var PlotlyChart = /** @class */ (function (_super) {
         _this.container = null;
         _this.resize = function () {
             if (_this.container) {
-                plotly.Plots.resize(_this.container);
+                plotly_js_dist_1.default.Plots.resize(_this.container);
             }
         };
         _this.draw = function (props) { return __awaiter(_this, void 0, void 0, function () {
@@ -89,7 +103,7 @@ var PlotlyChart = /** @class */ (function (_super) {
                         if (!this.container) return [3 /*break*/, 2];
                         // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
                         _a = this;
-                        return [4 /*yield*/, plotly.react(this.container, data, Object.assign({}, layout), config)];
+                        return [4 /*yield*/, plotly_js_dist_1.default.react(this.container, data, Object.assign({}, layout), config)];
                     case 1:
                         // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
                         _a.container = _b.sent();
@@ -205,29 +219,29 @@ var PlotlyChart = /** @class */ (function (_super) {
         }
         window.addEventListener("resize", this.resize);
     };
-    PlotlyChart.prototype.componentWillReceiveProps = function (nextProps) {
-        this.draw(nextProps);
+    PlotlyChart.prototype.componentDidUpdate = function (prevProps) {
+        this.draw(prevProps);
     };
     PlotlyChart.prototype.componentDidMount = function () {
         this.draw(this.props);
     };
     PlotlyChart.prototype.componentWillUnmount = function () {
         if (this.container) {
-            plotly.purge(this.container);
+            plotly_js_dist_1.default.purge(this.container);
         }
         window.removeEventListener("resize", this.resize);
     };
     PlotlyChart.prototype.render = function () {
         var _this = this;
         var _a = this.props, data = _a.data, layout = _a.layout, config = _a.config, onAfterExport = _a.onAfterExport, onAfterPlot = _a.onAfterPlot, onAnimated = _a.onAnimated, onAnimatingFrame = _a.onAnimatingFrame, onAnimationInterrupted = _a.onAnimationInterrupted, onAutoSize = _a.onAutoSize, onBeforeExport = _a.onBeforeExport, onClick = _a.onClick, onClickAnnotation = _a.onClickAnnotation, onDeselect = _a.onDeselect, onDoubleClick = _a.onDoubleClick, onFramework = _a.onFramework, onHover = _a.onHover, onLegendClick = _a.onLegendClick, onLegendDoubleClick = _a.onLegendDoubleClick, onRelayout = _a.onRelayout, onRestyle = _a.onRestyle, onRedraw = _a.onRedraw, onSelected = _a.onSelected, onSelecting = _a.onSelecting, onSliderChange = _a.onSliderChange, onSliderEnd = _a.onSliderEnd, onSliderStart = _a.onSliderStart, onTransitioning = _a.onTransitioning, onTransitionInterrupted = _a.onTransitionInterrupted, onUnHover = _a.onUnHover, onEvent = _a.onEvent, other = __rest(_a, ["data", "layout", "config", "onAfterExport", "onAfterPlot", "onAnimated", "onAnimatingFrame", "onAnimationInterrupted", "onAutoSize", "onBeforeExport", "onClick", "onClickAnnotation", "onDeselect", "onDoubleClick", "onFramework", "onHover", "onLegendClick", "onLegendDoubleClick", "onRelayout", "onRestyle", "onRedraw", "onSelected", "onSelecting", "onSliderChange", "onSliderEnd", "onSliderStart", "onTransitioning", "onTransitionInterrupted", "onUnHover", "onEvent"]);
-        return (React.createElement("div", __assign({}, other, { ref: function (node) { return __awaiter(_this, void 0, void 0, function () {
+        return (react_1.default.createElement("div", __assign({}, other, { ref: function (node) { return __awaiter(_this, void 0, void 0, function () {
                 var _a;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
                         case 0:
                             if (!(node && !this.container)) return [3 /*break*/, 2];
                             _a = this;
-                            return [4 /*yield*/, plotly.newPlot(node, data, Object.assign({}, layout), config)];
+                            return [4 /*yield*/, plotly_js_dist_1.default.newPlot(node, data, Object.assign({}, layout), config)];
                         case 1:
                             _a.container = _b.sent();
                             this.attachListeners();
@@ -238,5 +252,5 @@ var PlotlyChart = /** @class */ (function (_super) {
             }); } })));
     };
     return PlotlyChart;
-}(React.Component));
+}(react_1.default.Component));
 exports.default = PlotlyChart;
