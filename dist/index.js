@@ -76,7 +76,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var plotly_js_dist_min_1 = __importDefault(require("plotly.js-dist-min"));
+var plotly_js_dist_1 = __importDefault(require("plotly.js-dist"));
 var react_1 = __importDefault(require("react"));
 /***
  * Usage:
@@ -91,7 +91,7 @@ var PlotlyChart = /** @class */ (function (_super) {
         _this.container = null;
         _this.resize = function () {
             if (_this.container) {
-                plotly_js_dist_min_1.default.Plots.resize(_this.container);
+                plotly_js_dist_1.default.Plots.resize(_this.container);
             }
         };
         _this.draw = function (props) { return __awaiter(_this, void 0, void 0, function () {
@@ -103,7 +103,7 @@ var PlotlyChart = /** @class */ (function (_super) {
                         if (!this.container) return [3 /*break*/, 2];
                         // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
                         _a = this;
-                        return [4 /*yield*/, plotly_js_dist_min_1.default.react(this.container, data, Object.assign({}, layout), config)];
+                        return [4 /*yield*/, plotly_js_dist_1.default.react(this.container, data, Object.assign({}, layout), config)];
                     case 1:
                         // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
                         _a.container = _b.sent();
@@ -227,7 +227,7 @@ var PlotlyChart = /** @class */ (function (_super) {
     };
     PlotlyChart.prototype.componentWillUnmount = function () {
         if (this.container) {
-            plotly_js_dist_min_1.default.purge(this.container);
+            plotly_js_dist_1.default.purge(this.container);
         }
         window.removeEventListener("resize", this.resize);
     };
@@ -241,7 +241,7 @@ var PlotlyChart = /** @class */ (function (_super) {
                         case 0:
                             if (!(node && !this.container)) return [3 /*break*/, 2];
                             _a = this;
-                            return [4 /*yield*/, plotly_js_dist_min_1.default.newPlot(node, data, Object.assign({}, layout), config)];
+                            return [4 /*yield*/, plotly_js_dist_1.default.newPlot(node, data, Object.assign({}, layout), config)];
                         case 1:
                             _a.container = _b.sent();
                             this.attachListeners();
