@@ -184,8 +184,8 @@ class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     }
   };
 
-  public componentWillReceiveProps(nextProps: IPlotlyChartProps) {
-    this.draw(nextProps);
+  public componentDidUpdate(prevProps: IPlotlyChartProps) {
+    this.draw(prevProps);
   }
 
   public componentDidMount() {
