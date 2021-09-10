@@ -1,4 +1,5 @@
 module.exports = {
+  "testEnvironment": "jsdom",
   "roots": [
     "<rootDir>/src"
   ],
@@ -8,5 +9,12 @@ module.exports = {
   ],
   "transform": {
     "^.+\\.(ts|tsx)$": "ts-jest"
+  },
+  "globals": {
+    "ts-jest": {
+      "tsconfig": {
+        "jsx": 'react-jsx',
+      },
+    },
   },
 }
