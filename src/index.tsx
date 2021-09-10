@@ -1,5 +1,5 @@
 import Plotly from "plotly.js";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 export interface IPlotlyChartProps {
   config?: any;
@@ -253,8 +253,17 @@ class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
 }
 
 const PlotlyChartFC: React.FC<IPlotlyChartProps> = (props) => {
+
+  const container = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (container.current != null){
+      Plotly.newPlot(container.current, props.data, props.layout, props.config)
+    }
+  }, [container])
+
   return (
-    <div></div>
+    <div ref={container}></div>
   )
 }
 
