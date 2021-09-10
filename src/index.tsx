@@ -252,4 +252,11 @@ class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   }
 }
 
+const PlotlyChartFC: React.FC<IPlotlyChartProps> = (props) => {
+  return (
+    <div></div>
+  )
+}
+
 export default PlotlyChart;
+export { PlotlyChartFC };
