@@ -50,4 +50,6 @@ declare class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     componentWillUnmount(): void;
     render(): JSX.Element;
 }
+declare const PlotlyChartFC: React.FC<IPlotlyChartProps>;
 export default PlotlyChart;
+export { PlotlyChartFC };
