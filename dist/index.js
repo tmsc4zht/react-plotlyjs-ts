@@ -219,8 +219,8 @@ var PlotlyChart = /** @class */ (function (_super) {
         }
         window.addEventListener("resize", this.resize);
     };
-    PlotlyChart.prototype.componentWillReceiveProps = function (nextProps) {
-        this.draw(nextProps);
+    PlotlyChart.prototype.componentDidUpdate = function (prevProps) {
+        this.draw(prevProps);
     };
     PlotlyChart.prototype.componentDidMount = function () {
         this.draw(this.props);
