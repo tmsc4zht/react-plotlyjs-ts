@@ -72,9 +72,12 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var plotly = require("plotly.js-dist-min");
-var React = require("react");
+var plotly_js_dist_1 = __importDefault(require("plotly.js-dist"));
+var react_1 = __importDefault(require("react"));
 /***
  * Usage:
  *  <PlotlyChart data={toJS(this.model_data)}
@@ -88,7 +91,7 @@ var PlotlyChart = /** @class */ (function (_super) {
         _this.container = null;
         _this.resize = function () {
             if (_this.container) {
-                plotly.Plots.resize(_this.container);
+                plotly_js_dist_1.default.Plots.resize(_this.container);
             }
         };
         _this.draw = function (props) { return __awaiter(_this, void 0, void 0, function () {
@@ -100,7 +103,7 @@ var PlotlyChart = /** @class */ (function (_super) {
                         if (!this.container) return [3 /*break*/, 2];
                         // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
                         _a = this;
-                        return [4 /*yield*/, plotly.react(this.container, data, Object.assign({}, layout), config)];
+                        return [4 /*yield*/, plotly_js_dist_1.default.react(this.container, data, Object.assign({}, layout), config)];
                     case 1:
                         // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
                         _a.container = _b.sent();
@@ -224,21 +227,21 @@ var PlotlyChart = /** @class */ (function (_super) {
     };
     PlotlyChart.prototype.componentWillUnmount = function () {
         if (this.container) {
-            plotly.purge(this.container);
+            plotly_js_dist_1.default.purge(this.container);
         }
         window.removeEventListener("resize", this.resize);
     };
     PlotlyChart.prototype.render = function () {
         var _this = this;
         var _a = this.props, data = _a.data, layout = _a.layout, config = _a.config, onAfterExport = _a.onAfterExport, onAfterPlot = _a.onAfterPlot, onAnimated = _a.onAnimated, onAnimatingFrame = _a.onAnimatingFrame, onAnimationInterrupted = _a.onAnimationInterrupted, onAutoSize = _a.onAutoSize, onBeforeExport = _a.onBeforeExport, onClick = _a.onClick, onClickAnnotation = _a.onClickAnnotation, onDeselect = _a.onDeselect, onDoubleClick = _a.onDoubleClick, onFramework = _a.onFramework, onHover = _a.onHover, onLegendClick = _a.onLegendClick, onLegendDoubleClick = _a.onLegendDoubleClick, onRelayout = _a.onRelayout, onRestyle = _a.onRestyle, onRedraw = _a.onRedraw, onSelected = _a.onSelected, onSelecting = _a.onSelecting, onSliderChange = _a.onSliderChange, onSliderEnd = _a.onSliderEnd, onSliderStart = _a.onSliderStart, onTransitioning = _a.onTransitioning, onTransitionInterrupted = _a.onTransitionInterrupted, onUnHover = _a.onUnHover, onEvent = _a.onEvent, other = __rest(_a, ["data", "layout", "config", "onAfterExport", "onAfterPlot", "onAnimated", "onAnimatingFrame", "onAnimationInterrupted", "onAutoSize", "onBeforeExport", "onClick", "onClickAnnotation", "onDeselect", "onDoubleClick", "onFramework", "onHover", "onLegendClick", "onLegendDoubleClick", "onRelayout", "onRestyle", "onRedraw", "onSelected", "onSelecting", "onSliderChange", "onSliderEnd", "onSliderStart", "onTransitioning", "onTransitionInterrupted", "onUnHover", "onEvent"]);
-        return (React.createElement("div", __assign({}, other, { ref: function (node) { return __awaiter(_this, void 0, void 0, function () {
+        return (react_1.default.createElement("div", __assign({}, other, { ref: function (node) { return __awaiter(_this, void 0, void 0, function () {
                 var _a;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
                         case 0:
                             if (!(node && !this.container)) return [3 /*break*/, 2];
                             _a = this;
-                            return [4 /*yield*/, plotly.newPlot(node, data, Object.assign({}, layout), config)];
+                            return [4 /*yield*/, plotly_js_dist_1.default.newPlot(node, data, Object.assign({}, layout), config)];
                         case 1:
                             _a.container = _b.sent();
                             this.attachListeners();
@@ -249,5 +252,5 @@ var PlotlyChart = /** @class */ (function (_super) {
             }); } })));
     };
     return PlotlyChart;
-}(React.Component));
+}(react_1.default.Component));
 exports.default = PlotlyChart;

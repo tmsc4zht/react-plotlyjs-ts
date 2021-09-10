@@ -1,5 +1,5 @@
-import * as plotly from "plotly.js-dist-min";
-import * as React from "react";
+import Plotly from "plotly.js-dist";
+import React from "react";
 export interface IPlotlyChartProps {
     config?: any;
     data: any;
@@ -8,31 +8,31 @@ export interface IPlotlyChartProps {
     onAfterExport?: () => void;
     onAfterPlot?: () => void;
     onAnimated?: () => void;
-    onAnimatingFrame?: (event: plotly.FrameAnimationEvent) => void;
+    onAnimatingFrame?: (event: Plotly.FrameAnimationEvent) => void;
     onAnimationInterrupted?: () => void;
     onAutoSize?: () => void;
     onBeforeExport?: () => void;
-    onClick?: (event: plotly.PlotMouseEvent) => void;
-    onClickAnnotation?: (event: plotly.ClickAnnotationEvent) => void;
+    onClick?: (event: Plotly.PlotMouseEvent) => void;
+    onClickAnnotation?: (event: Plotly.ClickAnnotationEvent) => void;
     onDeselect?: () => void;
     onDoubleClick?: () => void;
     onFramework?: () => void;
-    onHover?: (event: plotly.PlotMouseEvent) => void;
-    onLegendClick?: (event: plotly.LegendClickEvent) => boolean;
-    onLegendDoubleClick?: (event: plotly.LegendClickEvent) => boolean;
-    onRelayout?: (event: plotly.PlotRelayoutEvent) => void;
-    onRestyle?: (evemt: plotly.PlotRestyleEvent) => void;
+    onHover?: (event: Plotly.PlotMouseEvent) => void;
+    onLegendClick?: (event: Plotly.LegendClickEvent) => boolean;
+    onLegendDoubleClick?: (event: Plotly.LegendClickEvent) => boolean;
+    onRelayout?: (event: Plotly.PlotRelayoutEvent) => void;
+    onRestyle?: (evemt: Plotly.PlotRestyleEvent) => void;
     onRedraw?: () => void;
-    onSelected?: (event: plotly.PlotSelectionEvent) => void;
-    onSelecting?: (event: plotly.PlotSelectionEvent) => void;
-    onSliderChange?: (event: plotly.SliderChangeEvent) => void;
-    onSliderEnd?: (event: plotly.SliderEndEvent) => void;
-    onSliderStart?: (event: plotly.SliderEndEvent) => void;
+    onSelected?: (event: Plotly.PlotSelectionEvent) => void;
+    onSelecting?: (event: Plotly.PlotSelectionEvent) => void;
+    onSliderChange?: (event: Plotly.SliderChangeEvent) => void;
+    onSliderEnd?: (event: Plotly.SliderEndEvent) => void;
+    onSliderStart?: (event: Plotly.SliderEndEvent) => void;
     onTransitioning?: () => void;
     onTransitionInterrupted?: () => void;
-    onUnHover?: (event: plotly.PlotMouseEvent) => void;
+    onUnHover?: (event: Plotly.PlotMouseEvent) => void;
     onEvent?: (data: any) => void;
-    onBeforePlot?: (event: plotly.BeforePlotEvent) => void;
+    onBeforePlot?: (event: Plotly.BeforePlotEvent) => void;
 }
 /***
  * Usage:
@@ -41,7 +41,7 @@ export interface IPlotlyChartProps {
  *               onClick={({points, event}) => console.log(points, event)}>
  */
 declare class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
-    container: plotly.PlotlyHTMLElement | null;
+    container: Plotly.PlotlyHTMLElement | null;
     attachListeners(): void;
     resize: () => void;
     draw: (props: IPlotlyChartProps) => Promise<void>;
