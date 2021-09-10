@@ -10,7 +10,7 @@ module.exports = {
   "transform": {
     "^.+\\.(ts|tsx)$": "ts-jest"
   },
-  "setupFiles": ["jest-canvas-mock"],
+  "setupFiles": ["./src/__mock__/setup.js","jest-canvas-mock"],
   "globals": {
     "ts-jest": {
       "tsconfig": {
