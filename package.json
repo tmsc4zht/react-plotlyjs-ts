@@ -6,7 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -40,10 +41,5 @@
     "react-test-renderer": "^17.0.2",
     "ts-jest": "^27.0.5",
     "typescript": "^4.4.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn build"
-    }
   }
 }
