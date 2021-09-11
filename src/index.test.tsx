@@ -20,15 +20,6 @@ test("react can create PlotlyChart component", () => {
 		}
 	];
 	const layout = {
-		annotations: [
-			{
-				text: 'simple annotation',
-				x: 0,
-				xref: 'paper',
-				y: 0,
-				yref: 'paper'
-			}
-		],
 		title: 'simple example',
 		xaxis: {
 			title: 'time'
@@ -63,15 +54,6 @@ test("react can create PlotlyChartFC component", () => {
 		}
 	];
 	const layout = {
-		annotations: [
-			{
-				text: 'simple annotation',
-				x: 0,
-				xref: 'paper',
-				y: 0,
-				yref: 'paper'
-			}
-		],
 		title: 'simple example',
 		xaxis: {
 			title: 'time'
