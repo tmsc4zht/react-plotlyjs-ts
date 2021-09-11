@@ -1,4 +1,4 @@
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import PlotlyChart, {PlotlyChartFC} from "./index"
 
 test("react can create PlotlyChart component", () => {
@@ -20,15 +20,6 @@ test("react can create PlotlyChart component", () => {
 		}
 	];
 	const layout = {
-		annotations: [
-			{
-				text: 'simple annotation',
-				x: 0,
-				xref: 'paper',
-				y: 0,
-				yref: 'paper'
-			}
-		],
 		title: 'simple example',
 		xaxis: {
 			title: 'time'
@@ -36,14 +27,11 @@ test("react can create PlotlyChart component", () => {
 	}
 
 
-	const component = renderer.create(
+	render(
 		<PlotlyChart data={data}
 			layout={layout}
 		/>
 	)
-
-	const tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
 
 })
 
@@ -66,15 +54,6 @@ test("react can create PlotlyChartFC component", () => {
 		}
 	];
 	const layout = {
-		annotations: [
-			{
-				text: 'simple annotation',
-				x: 0,
-				xref: 'paper',
-				y: 0,
-				yref: 'paper'
-			}
-		],
 		title: 'simple example',
 		xaxis: {
 			title: 'time'
@@ -82,13 +61,10 @@ test("react can create PlotlyChartFC component", () => {
 	}
 
 
-	const component = renderer.create(
+	render(
 		<PlotlyChartFC data={data}
 			layout={layout}
 		/>
 	)
-
-	const tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
 
 })
