@@ -277,7 +277,7 @@ var PlotlyChartFC = function (props) {
     var container = (0, react_1.useRef)(null);
     (0, react_1.useEffect)(function () {
         if (container.current != null) {
-            plotly_js_1.default.newPlot(container.current, props.data, props.layout, props.config);
+            plotly_js_1.default.newPlot(container.current, props.data, props.layout, props.config).catch(function (e) { return console.log(e); });
         }
     }, [container]);
     return (react_1.default.createElement("div", { ref: container }));

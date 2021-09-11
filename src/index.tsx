@@ -258,7 +258,7 @@ const PlotlyChartFC: React.FC<IPlotlyChartProps> = (props) => {
 
   useEffect(() => {
     if (container.current != null){
-      Plotly.newPlot(container.current, props.data, props.layout, props.config)
+      Plotly.newPlot(container.current, props.data, props.layout, props.config).catch(e => console.log(e))
     }
   }, [container])
 
