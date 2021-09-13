@@ -1,4 +1,4 @@
-import Plotly from "plotly.js";
+import Plotly, { PlotlyHTMLElement } from "plotly.js";
 import React, { useEffect, useRef } from "react";
 
 export interface IPlotlyChartProps {
@@ -260,7 +260,15 @@ const PlotlyChartFC: React.FC<IPlotlyChartProps> = (props) => {
     if (container.current != null){
       Plotly.newPlot(container.current, props.data, props.layout, props.config).catch(e => console.log(e))
     }
-  }, [container])
+
+    const p = container.current
+
+    return () => {
+      if(p != null) {
+        Plotly.purge(p)
+      }
+    }
+  }, [])
 
   return (
     <div ref={container}></div>

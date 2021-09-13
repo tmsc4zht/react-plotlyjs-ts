@@ -279,7 +279,13 @@ var PlotlyChartFC = function (props) {
         if (container.current != null) {
             plotly_js_1.default.newPlot(container.current, props.data, props.layout, props.config).catch(function (e) { return console.log(e); });
         }
-    }, [container]);
+        var p = container.current;
+        return function () {
+            if (p != null) {
+                plotly_js_1.default.purge(p);
+            }
+        };
+    }, []);
     return (react_1.default.createElement("div", { ref: container }));
 };
 exports.PlotlyChartFC = PlotlyChartFC;
