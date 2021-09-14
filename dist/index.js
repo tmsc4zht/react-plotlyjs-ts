@@ -275,15 +275,22 @@ var PlotlyChart = /** @class */ (function (_super) {
 }(react_1.default.Component));
 var PlotlyChartFC = function (props) {
     var container = (0, react_1.useRef)(null);
+    var attachListeners = function () {
+        if (container.current != null) {
+            plotly_js_1.default.Plots.resize(container.current);
+        }
+    };
     (0, react_1.useEffect)(function () {
         if (container.current != null) {
             plotly_js_1.default.newPlot(container.current, props.data, props.layout, props.config).catch(function (e) { return console.log(e); });
         }
+        addEventListener("resize", attachListeners);
         var p = container.current;
         return function () {
             if (p != null) {
                 plotly_js_1.default.purge(p);
             }
+            removeEventListener("resize", attachListeners);
         };
     }, []);
     return (react_1.default.createElement("div", { ref: container }));
