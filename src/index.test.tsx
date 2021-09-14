@@ -1,4 +1,5 @@
-import renderer from 'react-test-renderer';
+import Plotly from "plotly.js"
+import { render } from '@testing-library/react';
 import PlotlyChart, {PlotlyChartFC} from "./index"
 
 test("react can create PlotlyChart component", () => {
@@ -20,15 +21,6 @@ test("react can create PlotlyChart component", () => {
 		}
 	];
 	const layout = {
-		annotations: [
-			{
-				text: 'simple annotation',
-				x: 0,
-				xref: 'paper',
-				y: 0,
-				yref: 'paper'
-			}
-		],
 		title: 'simple example',
 		xaxis: {
 			title: 'time'
@@ -36,14 +28,11 @@ test("react can create PlotlyChart component", () => {
 	}
 
 
-	const component = renderer.create(
+	render(
 		<PlotlyChart data={data}
 			layout={layout}
 		/>
 	)
-
-	const tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
 
 })
 
@@ -66,15 +55,6 @@ test("react can create PlotlyChartFC component", () => {
 		}
 	];
 	const layout = {
-		annotations: [
-			{
-				text: 'simple annotation',
-				x: 0,
-				xref: 'paper',
-				y: 0,
-				yref: 'paper'
-			}
-		],
 		title: 'simple example',
 		xaxis: {
 			title: 'time'
@@ -82,13 +62,54 @@ test("react can create PlotlyChartFC component", () => {
 	}
 
 
-	const component = renderer.create(
+	render(
 		<PlotlyChartFC data={data}
 			layout={layout}
 		/>
 	)
 
-	const tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+})
+
+test("PlotlyChartFC purge plotly.js object if unmount", () => {
+
+	const data = [
+		{
+			marker: {
+				color: 'rgb(16, 32, 77)'
+			},
+			type: 'scatter',
+			x: [1, 2, 3],
+			y: [6, 2, 3]
+		},
+		{
+			name: 'bar chart example',
+			type: 'bar',
+			x: [1, 2, 3],
+			y: [6, 2, 3],
+		}
+	];
+	const layout = {
+		title: 'simple example',
+		xaxis: {
+			title: 'time'
+		}
+	}
+
+	const newPlotSpy = jest.spyOn(Plotly, "newPlot")
+	const purgeSpy = jest.spyOn(Plotly, "purge")
+
+	const plot = render(
+		<PlotlyChartFC data={data}
+			layout={layout}
+		/>
+	)
+
+	plot.unmount();
+
+	expect(newPlotSpy).toHaveBeenCalledTimes(1)
+	expect(purgeSpy).toHaveBeenCalledTimes(1)
+
+	newPlotSpy.mockRestore()
+	purgeSpy.mockRestore()
 
 })

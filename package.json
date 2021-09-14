@@ -1,12 +1,13 @@
 {
   "name": "react-plotlyjs-ts",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Typescript-React component for Plotly.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -26,24 +27,19 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@testing-library/react": "^12.1.0",
     "@types/jest": "^27.0.1",
     "@types/plotly.js": "^1.54.16",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
-    "@types/react-test-renderer": "^17.0.1",
     "buffer": "^6.0.3",
     "husky": "^7.0.2",
     "jest": "^27.1.1",
     "jest-canvas-mock": "^2.3.1",
     "plotly.js": "^2.3.0",
     "react": "^17.0.2",
-    "react-test-renderer": "^17.0.2",
+    "react-dom": "^17.0.2",
     "ts-jest": "^27.0.5",
     "typescript": "^4.4.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn build"
-    }
   }
 }
