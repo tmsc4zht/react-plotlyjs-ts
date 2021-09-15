@@ -296,7 +296,7 @@ var PlotlyChartFC = function (props) {
             removeEventListener("resize", attachListeners);
         };
     }, []);
-    return (react_1.default.createElement("div", { ref: container }));
+    return react_1.default.createElement("div", { ref: container });
 };
 exports.PlotlyChartFC = PlotlyChartFC;
 exports.default = PlotlyChart;

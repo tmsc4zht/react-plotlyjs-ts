@@ -48,9 +48,8 @@ class PlotlyChart extends React.Component<IPlotlyChartProps> {
   public container: Plotly.PlotlyHTMLElement | null = null;
 
   public attachListeners(): void {
-
     if (this.container == null) {
-      return
+      return;
     }
 
     if (this.props.onAfterExport) {
@@ -87,10 +86,7 @@ class PlotlyChart extends React.Component<IPlotlyChartProps> {
     }
     if (this.props.onClickAnnotation) {
       this.container.removeAllListeners("plotly_clickannotation");
-      this.container.on(
-        "plotly_clickannotation",
-        this.props.onClickAnnotation
-      );
+      this.container.on("plotly_clickannotation", this.props.onClickAnnotation);
     }
     if (this.props.onDeselect) {
       this.container.removeAllListeners("plotly_deselect");
@@ -175,7 +171,7 @@ class PlotlyChart extends React.Component<IPlotlyChartProps> {
     }
   };
 
-  public draw = async (props: IPlotlyChartProps):Promise<void> => {
+  public draw = async (props: IPlotlyChartProps): Promise<void> => {
     const { data, layout, config } = props;
     if (this.container) {
       // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
@@ -193,18 +189,18 @@ class PlotlyChart extends React.Component<IPlotlyChartProps> {
     this.draw(prevProps);
   }
 
-  public componentDidMount() :void {
+  public componentDidMount(): void {
     this.draw(this.props);
   }
 
-  public componentWillUnmount() :void {
+  public componentWillUnmount(): void {
     if (this.container) {
       Plotly.purge(this.container);
     }
     window.removeEventListener("resize", this.resize);
   }
 
-  public render():ReactNode {
+  public render(): ReactNode {
     const {
       data,
       layout,
@@ -241,7 +237,7 @@ class PlotlyChart extends React.Component<IPlotlyChartProps> {
     return (
       <div
         {...other}
-        ref={async node => {
+        ref={async (node) => {
           if (node && !this.container) {
             this.container = await Plotly.newPlot(
               node,
@@ -258,36 +254,38 @@ class PlotlyChart extends React.Component<IPlotlyChartProps> {
 }
 
 const PlotlyChartFC: React.FC<IPlotlyChartProps> = (props) => {
+  const container = useRef<HTMLDivElement>(null);
 
-  const container = useRef<HTMLDivElement>(null)
-  
   const attachListeners = () => {
-      if (container.current != null) {
-        Plotly.Plots.resize(container.current)
-      }
-  }
+    if (container.current != null) {
+      Plotly.Plots.resize(container.current);
+    }
+  };
 
   useEffect(() => {
-    if (container.current != null){
-      Plotly.newPlot(container.current, props.data, props.layout, props.config).catch(e => console.log(e))
+    if (container.current != null) {
+      Plotly.newPlot(
+        container.current,
+        props.data,
+        props.layout,
+        props.config
+      ).catch((e) => console.log(e));
     }
 
-    addEventListener("resize", attachListeners)
+    addEventListener("resize", attachListeners);
 
-    const p = container.current
+    const p = container.current;
 
     return () => {
-      if(p != null) {
-        Plotly.purge(p)
+      if (p != null) {
+        Plotly.purge(p);
       }
-      removeEventListener("resize", attachListeners)
-    }
-  }, [])
+      removeEventListener("resize", attachListeners);
+    };
+  }, []);
 
-  return (
-    <div ref={container}></div>
-  )
-}
+  return <div ref={container}></div>;
+};
 
 export default PlotlyChart;
 export { PlotlyChartFC };
