@@ -1,9 +1,9 @@
 import Plotly from "plotly.js";
-import React from "react";
+import React, { ReactNode } from "react";
 export interface IPlotlyChartProps {
-    config?: any;
-    data: any;
-    layout?: any;
+    config?: Partial<Plotly.Config>;
+    data: Array<Plotly.Data>;
+    layout?: Partial<Plotly.Layout>;
     style?: any;
     onAfterExport?: () => void;
     onAfterPlot?: () => void;
@@ -40,7 +40,7 @@ export interface IPlotlyChartProps {
  *               layout={layout}
  *               onClick={({points, event}) => console.log(points, event)}>
  */
-declare class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
+declare class PlotlyChart extends React.Component<IPlotlyChartProps> {
     container: Plotly.PlotlyHTMLElement | null;
     attachListeners(): void;
     resize: () => void;
@@ -48,7 +48,7 @@ declare class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     componentDidUpdate(prevProps: IPlotlyChartProps): void;
     componentDidMount(): void;
     componentWillUnmount(): void;
-    render(): JSX.Element;
+    render(): ReactNode;
 }
 declare const PlotlyChartFC: React.FC<IPlotlyChartProps>;
 export default PlotlyChart;

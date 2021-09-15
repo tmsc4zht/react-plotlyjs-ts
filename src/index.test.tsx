@@ -1,10 +1,11 @@
+import React from "react"
 import Plotly from "plotly.js"
 import { render } from '@testing-library/react';
 import PlotlyChart, {PlotlyChartFC} from "./index"
 
 test("react can create PlotlyChart component", () => {
 
-	const data = [
+	const data:Array<Plotly.Data> = [
 		{
 			marker: {
 				color: 'rgb(16, 32, 77)'
@@ -38,7 +39,7 @@ test("react can create PlotlyChart component", () => {
 
 test("react can create PlotlyChartFC component", () => {
 
-	const data = [
+	const data: Array<Plotly.Data> = [
 		{
 			marker: {
 				color: 'rgb(16, 32, 77)'
@@ -72,7 +73,7 @@ test("react can create PlotlyChartFC component", () => {
 
 test("PlotlyChartFC purge plotly.js object if unmount", () => {
 
-	const data = [
+	const data: Array<Plotly.Data> = [
 		{
 			marker: {
 				color: 'rgb(16, 32, 77)'

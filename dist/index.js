@@ -136,6 +136,9 @@ var PlotlyChart = /** @class */ (function (_super) {
         return _this;
     }
     PlotlyChart.prototype.attachListeners = function () {
+        if (this.container == null) {
+            return;
+        }
         if (this.props.onAfterExport) {
             this.container.on("plotly_afterexport", this.props.onAfterExport);
         }
