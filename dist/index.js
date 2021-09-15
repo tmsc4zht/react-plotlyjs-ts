@@ -136,6 +136,9 @@ var PlotlyChart = /** @class */ (function (_super) {
         return _this;
     }
     PlotlyChart.prototype.attachListeners = function () {
+        if (this.container == null) {
+            return;
+        }
         if (this.props.onAfterExport) {
             this.container.on("plotly_afterexport", this.props.onAfterExport);
         }
@@ -293,7 +296,7 @@ var PlotlyChartFC = function (props) {
             removeEventListener("resize", attachListeners);
         };
     }, []);
-    return (react_1.default.createElement("div", { ref: container }));
+    return react_1.default.createElement("div", { ref: container });
 };
 exports.PlotlyChartFC = PlotlyChartFC;
 exports.default = PlotlyChart;

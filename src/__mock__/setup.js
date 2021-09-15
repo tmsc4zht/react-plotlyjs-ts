@@ -1,1 +1,2 @@
-global.URL = {createObjectURL: () => {}};
+// eslint-disable-next-line
+global.URL = { createObjectURL: () => {} };
