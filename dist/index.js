@@ -278,15 +278,21 @@ var PlotlyChart = /** @class */ (function (_super) {
 }(react_1.default.Component));
 var PlotlyChartFC = function (props) {
     var container = (0, react_1.useRef)(null);
+    var plot = (0, react_1.useRef)(null);
     var firstRender = (0, react_1.useRef)(true);
     var resize = function () {
         if (container.current != null) {
             plotly_js_1.default.Plots.resize(container.current);
         }
     };
+    // onMount and unMount
     (0, react_1.useEffect)(function () {
         if (container.current != null) {
-            plotly_js_1.default.newPlot(container.current, props.data, props.layout, props.config).catch(function (e) { return console.log(e); });
+            plotly_js_1.default.newPlot(container.current, props.data, props.layout, props.config)
+                .then(function (p) {
+                plot.current = p;
+            })
+                .catch(function (e) { return console.log(e); });
         }
         addEventListener("resize", resize);
         var p = container.current;
@@ -297,6 +303,7 @@ var PlotlyChartFC = function (props) {
             removeEventListener("resize", resize);
         };
     }, []);
+    // data layout config update
     (0, react_1.useEffect)(function () {
         if (container.current == null) {
             return;
@@ -307,6 +314,143 @@ var PlotlyChartFC = function (props) {
         }
         plotly_js_1.default.react(container.current, props.data, props.layout, props.config).catch(function (e) { return console.log(e); });
     }, [props.data, props.layout, props.config]);
+    // listeners
+    (0, react_1.useEffect)(function () {
+        if (plot.current == null) {
+            return;
+        }
+        if (props.onAfterExport) {
+            plot.current.on("plotly_afterexport", props.onAfterExport);
+        }
+        if (props.onAfterPlot) {
+            plot.current.on("plotly_afterplot", props.onAfterPlot);
+        }
+        if (props.onAnimated) {
+            plot.current.on("plotly_animated", props.onAnimated);
+        }
+        if (props.onAnimatingFrame) {
+            plot.current.on("plotly_animatingframe", props.onAnimatingFrame);
+        }
+        if (props.onAnimationInterrupted) {
+            plot.current.on("plotly_animationinterrupted", props.onAnimationInterrupted);
+        }
+        if (props.onAutoSize) {
+            plot.current.on("plotly_autosize", props.onAutoSize);
+        }
+        if (props.onBeforeExport) {
+            plot.current.on("plotly_beforeexport", props.onBeforeExport);
+        }
+        // did not find onButtonClicked in @types/plotly.js?
+        // if (props.onButtonClicked) {
+        //   plot.current!.on('plotly_buttonclicked', props.onButtonClicked);
+        // }
+        if (props.onClick) {
+            plot.current.removeAllListeners("plotly_click");
+            plot.current.on("plotly_click", props.onClick);
+        }
+        if (props.onClickAnnotation) {
+            plot.current.removeAllListeners("plotly_clickannotation");
+            plot.current.on("plotly_clickannotation", props.onClickAnnotation);
+        }
+        if (props.onDeselect) {
+            plot.current.removeAllListeners("plotly_deselect");
+            plot.current.on("plotly_deselect", props.onDeselect);
+        }
+        if (props.onDoubleClick) {
+            plot.current.removeAllListeners("plotly_doubleclick");
+            plot.current.on("plotly_doubleclick", props.onDoubleClick);
+        }
+        if (props.onFramework) {
+            plot.current.removeAllListeners("plotly_framework");
+            plot.current.on("plotly_framework", props.onFramework);
+        }
+        if (props.onHover) {
+            plot.current.removeAllListeners("plotly_hover");
+            plot.current.on("plotly_hover", props.onHover);
+        }
+        if (props.onLegendClick) {
+            plot.current.removeAllListeners("plotly_legendclick");
+            plot.current.on("plotly_legendclick", props.onLegendClick);
+        }
+        if (props.onLegendDoubleClick) {
+            plot.current.removeAllListeners("plotly_legenddoubleclick");
+            plot.current.on("plotly_legenddoubleclick", props.onLegendDoubleClick);
+        }
+        if (props.onRelayout) {
+            plot.current.removeAllListeners("plotly_relayout");
+            plot.current.on("plotly_relayout", props.onRelayout);
+        }
+        if (props.onRestyle) {
+            plot.current.removeAllListeners("plotly_restyle");
+            plot.current.on("plotly_restyle", props.onRestyle);
+        }
+        if (props.onRedraw) {
+            plot.current.removeAllListeners("plotly_redraw");
+            plot.current.on("plotly_redraw", props.onRedraw);
+        }
+        if (props.onSelecting) {
+            plot.current.removeAllListeners("plotly_selecting");
+            plot.current.on("plotly_selecting", props.onSelecting);
+        }
+        if (props.onSliderChange) {
+            plot.current.removeAllListeners("plotly_sliderchange");
+            plot.current.on("plotly_sliderchange", props.onSliderChange);
+        }
+        if (props.onSliderEnd) {
+            plot.current.removeAllListeners("plotly_sliderend");
+            plot.current.on("plotly_sliderend", props.onSliderEnd);
+        }
+        if (props.onSliderStart) {
+            plot.current.removeAllListeners("plotly_sliderstart");
+            plot.current.on("plotly_sliderstart", props.onSliderStart);
+        }
+        if (props.onTransitioning) {
+            plot.current.removeAllListeners("plotly_transitioning");
+            plot.current.on("plotly_transitioning", props.onTransitioning);
+        }
+        if (props.onTransitionInterrupted) {
+            plot.current.removeAllListeners("plotly_transitioninterrupted");
+            plot.current.on("plotly_transitioninterrupted", props.onTransitionInterrupted);
+        }
+        if (props.onUnHover) {
+            plot.current.removeAllListeners("plotly_unhover");
+            plot.current.on("plotly_unhover", props.onUnHover);
+        }
+        if (props.onEvent) {
+            plot.current.removeAllListeners("plotly_event");
+            plot.current.on("plotly_event", props.onEvent);
+        }
+    }, [
+        props.onAfterExport,
+        props.onAfterPlot,
+        props.onAnimated,
+        props.onAnimatingFrame,
+        props.onAnimationInterrupted,
+        props.onAutoSize,
+        props.onBeforeExport,
+        // onButtonClicked,
+        props.onClick,
+        props.onClickAnnotation,
+        props.onDeselect,
+        props.onDoubleClick,
+        props.onFramework,
+        props.onHover,
+        props.onLegendClick,
+        props.onLegendDoubleClick,
+        props.onRelayout,
+        props.onRestyle,
+        props.onRedraw,
+        props.onSelected,
+        props.onSelecting,
+        props.onSliderChange,
+        props.onSliderEnd,
+        props.onSliderStart,
+        props.onTransitioning,
+        props.onTransitionInterrupted,
+        props.onUnHover,
+        props.onEvent,
+        props.onBeforePlot,
+    ]);
     return react_1.default.createElement("div", { ref: container });
 };
 exports.PlotlyChartFC = PlotlyChartFC;
