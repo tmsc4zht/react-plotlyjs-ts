@@ -286,6 +286,7 @@ const PlotlyChartFC: React.FC<IPlotlyChartProps> = (props) => {
     };
   }, []);
 
+  // data layout config update
   useEffect(() => {
     if (container.current == null) {
       return;
