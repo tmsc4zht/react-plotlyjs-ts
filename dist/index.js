@@ -279,7 +279,7 @@ var PlotlyChart = /** @class */ (function (_super) {
 var PlotlyChartFC = function (props) {
     var container = (0, react_1.useRef)(null);
     var firstRender = (0, react_1.useRef)(true);
-    var attachListeners = function () {
+    var resize = function () {
         if (container.current != null) {
             plotly_js_1.default.Plots.resize(container.current);
         }
@@ -288,13 +288,13 @@ var PlotlyChartFC = function (props) {
         if (container.current != null) {
             plotly_js_1.default.newPlot(container.current, props.data, props.layout, props.config).catch(function (e) { return console.log(e); });
         }
-        addEventListener("resize", attachListeners);
+        addEventListener("resize", resize);
         var p = container.current;
         return function () {
             if (p != null) {
                 plotly_js_1.default.purge(p);
             }
-            removeEventListener("resize", attachListeners);
+            removeEventListener("resize", resize);
         };
     }, []);
     (0, react_1.useEffect)(function () {
