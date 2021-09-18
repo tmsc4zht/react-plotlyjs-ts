@@ -255,6 +255,7 @@ class PlotlyChart extends React.Component<IPlotlyChartProps> {
 
 const PlotlyChartFC: React.FC<IPlotlyChartProps> = (props) => {
   const container = useRef<HTMLDivElement>(null);
+  const firstRender = useRef(true);
 
   const attachListeners = () => {
     if (container.current != null) {
@@ -283,6 +284,22 @@ const PlotlyChartFC: React.FC<IPlotlyChartProps> = (props) => {
       removeEventListener("resize", attachListeners);
     };
   }, []);
+
+  useEffect(() => {
+    if (container.current == null) {
+      return;
+    }
+    if (firstRender.current == true) {
+      firstRender.current = false;
+      return;
+    }
+    Plotly.react(
+      container.current,
+      props.data,
+      props.layout,
+      props.config
+    ).catch((e) => console.log(e));
+  }, [props.data, props.layout, props.config]);
 
   return <div ref={container}></div>;
 };
