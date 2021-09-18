@@ -94,3 +94,55 @@ test("PlotlyChartFC purge plotly.js object if unmount", () => {
   newPlotSpy.mockRestore();
   purgeSpy.mockRestore();
 });
+
+test("PlotlyChartFC redraw if props changed", () => {
+  const data: Array<Plotly.Data> = [
+    {
+      marker: {
+        color: "rgb(16, 32, 77)",
+      },
+      type: "scatter",
+      x: [1, 2, 3],
+      y: [6, 2, 3],
+    },
+    {
+      name: "bar chart example",
+      type: "bar",
+      x: [1, 2, 3],
+      y: [6, 2, 3],
+    },
+  ];
+  const layout = {
+    title: "simple example",
+    xaxis: {
+      title: "time",
+    },
+  };
+
+  const reactSpy = jest.spyOn(Plotly, "react");
+
+  const { rerender } = render(<PlotlyChartFC data={data} layout={layout} />);
+
+  const data2: Array<Plotly.Data> = [
+    {
+      marker: {
+        color: "rgb(16, 32, 77)",
+      },
+      type: "scatter",
+      x: [1, 2, 3, 4],
+      y: [6, 2, 3, 4],
+    },
+    {
+      name: "bar chart example",
+      type: "bar",
+      x: [1, 2, 3],
+      y: [6, 2, 3],
+    },
+  ];
+
+  rerender(<PlotlyChartFC data={data2} layout={layout} />);
+
+  expect(reactSpy).toHaveBeenCalledTimes(1);
+
+  reactSpy.mockRestore();
+});
