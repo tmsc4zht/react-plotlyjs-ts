@@ -1,4 +1,4 @@
-import Plotly from "plotly.js";
+import Plotly, { PlotlyHTMLElement } from "plotly.js";
 import React, { ReactNode, useEffect, useRef } from "react";
 
 export interface IPlotlyChartProps {
@@ -255,6 +255,7 @@ class PlotlyChart extends React.Component<IPlotlyChartProps> {
 
 const PlotlyChartFC: React.FC<IPlotlyChartProps> = (props) => {
   const container = useRef<HTMLDivElement>(null);
+  const plot = useRef<PlotlyHTMLElement | null>(null);
   const firstRender = useRef(true);
 
   const resize = () => {
@@ -263,14 +264,14 @@ const PlotlyChartFC: React.FC<IPlotlyChartProps> = (props) => {
     }
   };
 
+  // onMount and unMount
   useEffect(() => {
     if (container.current != null) {
-      Plotly.newPlot(
-        container.current,
-        props.data,
-        props.layout,
-        props.config
-      ).catch((e) => console.log(e));
+      Plotly.newPlot(container.current, props.data, props.layout, props.config)
+        .then((p) => {
+          plot.current = p;
+        })
+        .catch((e) => console.log(e));
     }
 
     addEventListener("resize", resize);
