@@ -257,7 +257,7 @@ const PlotlyChartFC: React.FC<IPlotlyChartProps> = (props) => {
   const container = useRef<HTMLDivElement>(null);
   const firstRender = useRef(true);
 
-  const attachListeners = () => {
+  const resize = () => {
     if (container.current != null) {
       Plotly.Plots.resize(container.current);
     }
@@ -273,7 +273,7 @@ const PlotlyChartFC: React.FC<IPlotlyChartProps> = (props) => {
       ).catch((e) => console.log(e));
     }
 
-    addEventListener("resize", attachListeners);
+    addEventListener("resize", resize);
 
     const p = container.current;
 
@@ -281,7 +281,7 @@ const PlotlyChartFC: React.FC<IPlotlyChartProps> = (props) => {
       if (p != null) {
         Plotly.purge(p);
       }
-      removeEventListener("resize", attachListeners);
+      removeEventListener("resize", resize);
     };
   }, []);
 
